@@ -74,4 +74,9 @@
       gap: rem(8);
     }
   }
+
+  &__error {
+    margin-top: rem(14);
+    color: #e00000;
+  }
 }
