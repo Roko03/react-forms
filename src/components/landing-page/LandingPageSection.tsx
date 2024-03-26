@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "./LandingPageSection.module.scss";
-import DialogComponent from "../dialog/DialogComponent";
+import SuccessModalComponent from "../success-modal/SuccessModalComponent";
 
 const LandingPageSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -11,9 +11,9 @@ const LandingPageSection = () => {
         <h1>ej</h1>
       </section>
       {isModalOpen && (
-        <DialogComponent closeDialog={() => setIsModalOpen(false)}>
+        <SuccessModalComponent closeDialog={() => setIsModalOpen(false)}>
           <h1>Ej</h1>
-        </DialogComponent>
+        </SuccessModalComponent>
       )}
     </>
   );
