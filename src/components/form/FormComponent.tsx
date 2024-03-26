@@ -3,6 +3,11 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+interface FormComponentProps {
+  openModal: () => void;
+  setOrderDetail: (data: Order) => void;
+}
+
 const orderSchema = z.object({
   email: z.string().email({
     message: "Unijeli ste pogrešan e-mail",
@@ -20,7 +25,10 @@ const orderSchema = z.object({
 
 type TOrderSchema = z.infer<typeof orderSchema>;
 
-const FormComponent = () => {
+const FormComponent: React.FC<FormComponentProps> = ({
+  openModal,
+  setOrderDetail,
+}) => {
   const {
     register,
     handleSubmit,
@@ -31,7 +39,18 @@ const FormComponent = () => {
   const onSubmit = (data: TOrderSchema) => {
     reset();
 
-    console.log(data);
+    const order: Order = {
+      email: data.email,
+      contact: {
+        name: data.name,
+        country: data.country,
+        address: data.address,
+      },
+      type: data.type,
+    };
+
+    setOrderDetail(order);
+    openModal();
   };
 
   return (

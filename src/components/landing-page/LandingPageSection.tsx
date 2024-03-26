@@ -2,18 +2,24 @@ import { useState } from "react";
 import styles from "./LandingPageSection.module.scss";
 import SuccessModalComponent from "../success-modal/SuccessModalComponent";
 import FormComponent from "../form/FormComponent";
+import OrderDetailComponent from "../order-detail/OrderDetailComponent";
 
 const LandingPageSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [orderDetail, setOrderDetail] = useState<Order | null>(null);
 
   return (
     <>
       <section className={styles.landing_section}>
-        <FormComponent />
+        <h2>{`Račun -> Plaćanje`}</h2>
+        <FormComponent
+          openModal={() => setIsModalOpen(true)}
+          setOrderDetail={(data: Order) => setOrderDetail(data)}
+        />
       </section>
-      {isModalOpen && (
+      {isModalOpen && orderDetail !== null && (
         <SuccessModalComponent closeDialog={() => setIsModalOpen(false)}>
-          <h1>Ej</h1>
+          <OrderDetailComponent orderDetail={orderDetail} />
         </SuccessModalComponent>
       )}
     </>

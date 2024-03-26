@@ -1,5 +1,4 @@
 import DialogComponent from "../dialog/DialogComponent";
-//import styles from "./SuccessModalComponent.module.scss";
 
 interface SuccessModalComponentProps {
   closeDialog: () => void;
